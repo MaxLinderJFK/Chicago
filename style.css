@@ -1,0 +1,46 @@
+body {
+            background-color: #ccc;
+            font-family: arial;
+        }
+
+        .title {
+            font-size: 18px;
+            color: red;
+            text-align: center;
+        }
+
+        .time {
+            color: red;
+            font-family: tahoma;
+            float: right;
+        }
+
+        .rounded-img {
+            width: 10%;
+            border-radius: 80%;
+            box-shadow: 0 0 10px rgba(26, 0, 0, 0.4);
+            padding: 0.6em;
+            margin-bottom: 1em;
+            float: left;
+        }
+
+        .nav-link.active {
+            color: red;
+        }
+
+        .nav-link:active {
+            background-color: #f0f0f0;
+            transform: scale(0.95);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .top-right {
+            float: right;
+            text-align: right;
+        }
+
+        .company-logo {
+        img: iu.jpeg
+            height: 40px;
+            margin: 10px;
+        }

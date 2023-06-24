@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>DHL Express</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="DHL Express">
+    <meta name="description" content="DHL Express">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/iu.jpeg" alt="12">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+            color: red;
+        }
+        .navbar-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow-x: auto;
+            white-space: nowrap; /* add this line */
+            background-color: #ffc107;
+        }
+        .nav-link:hover {
+            background-color: #f8f9fa;
+            color: #333;
+            border-radius: 15px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Доставочник</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="2places.html">Костанай</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Rudny.html">Рудный</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="places.html">Отчеты</a>
+                </li>
+            </ul>
+            <div class="top-right">
+                <div id="dateTime"></div>
+                <h2 class="title">DHL Express Kostanay</h2>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning navbar-bottom">
+        <ul class="navbar-nav" id="daysOfYear">
+            <!-- Здесь будут добавлены дни года с помощью JavaScript -->
+        </ul>
+    </nav>
+
+    <script>
+       function generateDaysOfYear() {
+    const daysContainer = document.getElementById("daysOfYear");
+    const startDate = new Date("2023-01-01");
+    const endDate = new Date("2024-01-01");
+
+    for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const listItem = document.createElement("li");
+        listItem.className = "nav-item";
+
+        const link = document.createElement("a");
+        link.className = "nav-link";
+        link.href = `day_${year}_${month}_${day}.html`; // Формат URL для страницы
+        link.textContent = `${day}.${month}.${year}`;
+
+        listItem.appendChild(link);
+        daysContainer.appendChild(listItem);
+    }
+}
+
+
+        function startTime() {
+            const tm = new Date();
+            const h = tm.getHours().toString().padStart(2, '0');
+            const m = tm.getMinutes().toString().padStart(2, '0');
+            const s = tm.getSeconds().toString().padStart(2, '0');
+            const day = tm.getDate().toString().padStart(2, '0');
+            const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+            const month = months[tm.getMonth()];
+            const year = tm.getFullYear();
+            const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+            const dayOfWeek = daysOfWeek[tm.getDay()];
+            document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
+            setTimeout(startTime, 500);
+        }
+
+        startTime();
+        generateDaysOfYear();
+    </script>
+</body>
+
+</html>

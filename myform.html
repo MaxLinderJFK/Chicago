@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>DHL Express</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="DHL Express">
+    <meta name="description" content="DHL Express">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/iu.jpeg" alt="12" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+            color: red;
+        }
+
+        .bg-warning {
+            background-color: warning;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Доставочник</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="2places.html">Костанай</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Rudny.html">Рудный</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="places.html">Отчеты</a>
+                </li>
+            </ul>
+            <div class="top-right">
+                <div id="dateTime"></div>
+                <h2 class="title">DHL Express Kostanay</h2>
+            </div>
+        </div>
+    </nav>
+     <div class="table-container">
+        <!-- Вставка 3 * 5 = 15 таблиц -->
+        <?php for ($i = 0; $i < 15; $i++): ?>
+            <table class="single-table">
+                <?php for ($row = 0; $row < 33; $row++): ?>
+                    <tr>
+                        <?php for ($col = 0; $col < 7; $col++): ?>
+                            <td></td>
+                        <?php endfor; ?>
+                    </tr>
+                <?php endfor; ?>
+            </table>
+        <?php endfor; ?>
+    </div>
+    <form action="http://localhost/myproject/myscript.php" method="post">
+    <label for="date">Date:</label>
+    <input type="text" name="date" id="date">
+    <input type="submit" value="Submit">
+  </form>
+    <script>
+        function startTime() {
+            var tm = new Date();
+            var h = tm.getHours();
+            var m = tm.getMinutes();
+            var s = tm.getSeconds();
+            var day = tm.getDate();
+            var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+            var month = months[tm.getMonth()];
+            var year = tm.getFullYear();
+            var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+            var dayOfWeek = daysOfWeek[tm.getDay()];
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('dateTime').innerHTML = day + ' ' + month + ' ' + year + ' года. ' + dayOfWeek + ' ' + h + ":" + m + ":" + s;
+            setTimeout(startTime, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        startTime();
+    </script>
+
+</body>
+
+</html>
